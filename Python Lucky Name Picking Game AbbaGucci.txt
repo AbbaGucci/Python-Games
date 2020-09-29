@@ -1,0 +1,18 @@
+#created by AbbaGucci, follow me in github for more future uploads
+#the code of python random drawing game
+
+import random
+def game():
+  showInformation("Welcome to Abba's lucky name picking game!")
+  hat=[]
+  n=requestInteger("How many folks are in your drawing:")
+  printNow(type(n))
+  for i in range (0,n): 
+    name=requestString("Enter the names of each person in your drawing?")
+    hat.append(name)    
+    name=random.choice(hat)
+    
+  showInformation("Congratulations, our lucky person is "+name)
+game()
+
+
