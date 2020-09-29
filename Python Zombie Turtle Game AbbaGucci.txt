@@ -1,0 +1,79 @@
+#created by AbbaGucci, follow me in github for more future uploads
+#the code to create the simple game, zombie turtle 
+#the user plays the infected turtle and tries to bite the victim turtle in as few of moves as possible
+#The game end when the user's zombie turtle bite one of the victim
+
+import time, random 
+
+w = makeWorld() 
+zombie = makeTurtle(w) 
+zombie.penUp() 
+zombie.moveTo(100,100) #move the vampire turtle to a point in the world left and up of center
+zombie.penDown() 
+OldVictim = makeTurtle(w)
+YoungVictim = makeTurtle(w)
+YoungVictim.penUp()
+YoungVictim.moveTo(250,250)
+YoungVictim.penDown() 
+
+
+def turtleRandom(): 
+  R=random.choice([1,2,3]) 
+  if R==1: 
+    turnLeft(OldVictim)
+  elif R==2: 
+    turnRight(OldVictim)
+  elif R==3: 
+    forward(OldVictim,0)
+
+def turtleRandom(): 
+  R=random.choice([4,5,6]) 
+  if R==4: 
+    turnLeft(YoungVictim)
+  elif R==5: 
+    turnRight(YoungVictim)
+  elif R==6: 
+    forward(YoungVictim,0)
+  
+
+def turtleForward(): #create a function called turtleForward that will move all turtles in the direction they are pointed forward in three motions
+  forward(OldVictim,5)#moves the old victim turtle forward 5 pixels
+  forward(YoungVictim,20)#move the young victim turtle forward 20 pixel
+  forward(zombie,15)#moves the zombie turtle forward 15 pixels
+  time.sleep(.5) #adds a delay to the program for the benefit of the user, gives the appearance of slow movement (creates animation effect)
+  forward(OldVictim,5) #repeat same movement and delays twice more
+  forward(YoungVictim,20)
+  forward(zombie,15)
+  time.sleep(.5)
+  forward(OldVictim,5)
+  forward(YoungVictim,20)
+  forward(zombie,15)
+  time.sleep(.5)
+
+def userMove(): #create the function that plays the game
+  x="A" #set an initial value of x, it can be anything but Q
+  i=1 #Set the initial value of i to 1, this is just a measure of the total number of moves it takes a user to win
+  while x != "Q": #sets up a loop to make the game run until the game is won or a user asks to quit
+    x=requestString("Which direction you want to go, F=Forward, L=90 degrees Left, R= 90 degrees Right, Q=Quit? Upper left one is the zombie turtle") #request movement directions from user
+    i=i+1 #cumulative sum to keep track of how many moves a user has made
+    if x=="L": #if the user enter L turn zombie turle left and call the two functions we have created to govern zombie and victims movement
+      turnLeft(zombie) #turns zombie turtle left based on user input
+      turtleRandom() #calls the turtleRandom function we created above
+      turtleForward()#calls the turtleFuction function we created above
+    elif x=="R": #same as above only for right turn
+      turnRight(zombie)
+      turtleRandom()
+      turtleForward()
+    elif x=="F": #same as above only for going straight with no turns
+      turtleRandom()
+      turtleForward()
+    O=max(abs(getXPos(OldVictim)-getXPos(zombie)),abs(getYPos(OldVictim)-getYPos(zombie)))
+    Y=max(abs(getXPos(YoungVictim)-getXPos(zombie)),abs(getYPos(YoungVictim)-getYPos(zombie))) #this checks to see how close the turles are together
+    if O<=20: #if the turtles are within 20 pixels, stop the loop by setting x equal to Q, and display a winning message
+        showInformation("OldVictim bitten.  You win in %i moves" % i) #displays the winning message with the number of moves it took to win
+        x="Q"
+    if Y<=25:
+        showInformation("YoungVictim bitten. You win in %i moves" %i)
+        x="Q"
+
+userMove() #call function to play the game
