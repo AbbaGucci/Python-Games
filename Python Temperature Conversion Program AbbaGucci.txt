@@ -1,0 +1,14 @@
+def ques():
+  x=int(input("Do you want to convert your temperature in 1)Fahrenheit or 2)Celcius?"))
+  if x==1:
+    Celsius=float(input("Enter temperature in celcius:"))
+    Fahrenheit=(Celsius*9/5.0)+32
+    print("Here is your temperature in F: %r" % Fahrenheit)
+  elif x==2:
+    Fahrenheit=float(input("Enter temperture in fahrenheit"))
+    Celcius=(Fahrenheit-32)*5/9.0
+    print("Here is your temperature in C: %r" % Celcius)
+  else:
+    showInformation("Not a valid response, try again!")
+    ques()
+ques()
