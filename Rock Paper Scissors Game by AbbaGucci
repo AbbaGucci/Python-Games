@@ -1,0 +1,88 @@
+# Follow me @ https://github.com/AbbaGucci
+#Rock paper Scissors game created by Abba Gucci
+#Player pick an option and compare with computer
+#A cute turtle will dance on the screen if player win the game
+
+import random
+showInformation("Welcome to Albert's Rock Paper Scissors Game!")
+def game(): 
+  Box=["Rock","Paper","Scissor"]
+  computer=random.choice(Box)
+ 
+  player=requestString("Enter your guess, Rock, Paper, Scissor: ") 
+  if player==computer:
+    showInformation("Tie! Try again! Computer chose "+computer +"! You chose "+player)
+    game()
+  elif player=="Rock" and computer=="Paper":
+    showInformation("You loss! Paper covers Rock! Try again! Computer chose "+computer +"! You chose "+player )
+    game()
+  elif player=="Paper" and computer=="Scissor":
+    showInformation("You loss! Scissor cuts Paper! Try again! Computer chose "+computer +"! You chose "+player)
+    game()
+  elif player=="Scissor" and computer=="Rock":
+    showInformation("You loss! Rock crushes Scissor! Try again! Computer chose "+computer +"! You chose "+player)
+    game()
+  else:
+    showInformation("Congratulations! You win! Computer chose "+computer +"! Let's dance!")
+    import time
+    Celebrate = makeWorld() 
+    Sam = makeTurtle(Celebrate)
+    John = makeTurtle(Celebrate)
+
+    def dance(): 
+      Sam.penUp() 
+      Sam.moveTo(100,100)
+      time.sleep(.2)
+      Sam.moveTo(150,150)
+      time.sleep(.2)
+      Sam.moveTo(200,200)
+      Sam.penDown()
+      
+      John.penUp() 
+      John.moveTo(200,200)
+      time.sleep(.2)
+      John.moveTo(300,300)
+      time.sleep(.2)
+      John.moveTo(400,400)
+      John.penDown()
+
+    for i in range(0,5): 
+      dance()
+      Sam.penUp()
+      forward(Sam,100) 
+      time.sleep(.1)
+      backward(Sam,100) 
+      time.sleep(.1)
+      forward(Sam,100) 
+      time.sleep(.1)
+      backward(Sam,100)
+      time.sleep(.1)
+      turnRight(Sam) 
+      time.sleep(.1)
+      turnLeft(Sam)
+      time.sleep(.1)
+      turnRight(Sam)
+      time.sleep(.1)
+      turnLeft(Sam)
+      turnRight(Sam)
+      Sam.penDown()
+      
+      John.penUp()
+      backward(John,150) 
+      time.sleep(.1)
+      forward(John,150) 
+      time.sleep(.1)
+      backward(John,150) 
+      time.sleep(.1)
+      forward(John,150)
+      time.sleep(.1)
+      turnLeft(John) 
+      time.sleep(.1)
+      turnRight(John)
+      time.sleep(.1)
+      turnLeft(John)
+      time.sleep(.1)
+      turnRight(John)
+      turnLeft(John)
+      John.penDown()
+game()
